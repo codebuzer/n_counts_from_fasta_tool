@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FASTA File Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color:slategrey; /* Change background color to black */
+            color: #000; /* Change font color to black */
+            text-align: center;
+        }
+
+        h1 {
+            color: #fff; /* Change h1 font color to white */
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            max-width: 400px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        label {
+            display: block;
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        label:hover {
+            background-color: #2980b9;
+        }
+
+        input[type="submit"] {
+            background-color: #2ecc71;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #27ae60;
+        }
+
+        /* Added CSS for the links */
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            text-decoration: none;
+            margin: 10px;
+            color: #fff;
+        }
+
+        .social-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Added CSS for the "About Me" section */
+        section {
+            color: #fff; /* Change font color of the section to white */
+        }
+    </style>
+</head>
+<body>
+    <h1>Upload a FASTA File</h1>
+    <form action="/" method="POST" enctype="multipart/form-data">
+        <label for="fastaFile">Choose a FASTA File</label>
+        <input type="file" name="fastaFile" id="fastaFile" accept=".fasta">
+        <input type="submit" value="Upload">
+    </form>
+
+    <section>
+        <h2>About Me</h2>
+        <p>Hey, I am Abuzar Khan, a Bioinformatician currently working as a Data Management Supervisor under Dr. Rajesh Pandey at CSIR-IGIB, New Delhi.</p> 
+    </section>
+
+    <section>
+        <h2>About this tool</h2>
+    	<p>This is my first web app—a simple tool that takes an input file in FASTA format and returns a CSV file containing the number of 'N' counts in the sequences. Feel free to explore and use this tool for your research.</p>
+    </section>
+
+    <!-- Popup Message Script -->
+    <script>
+        // Check if the URL contains a query parameter indicating success
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('success')) {
+            // Display a success message
+            alert("File uploaded and processed successfully.");
+        }
+    </script>
+      <section>
+        <h2>You can find me here</h2>
+    </section>
+
+    <!-- Social Links Section -->
+    <div class="social-links">
+        <a href="https://github.com/codebuzer" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/abuzar-khan-0665a6259/" target="_blank">LinkedIn</a>
+    </div>
+</body>
+</html>
