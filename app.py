@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, send_file
 import pandas as pd
+import os  # Import the os module for handling file paths
 
 app = Flask(__name__)
 
@@ -22,8 +23,9 @@ def fasta2csv(filename):
     df = pd.concat([id_, seq], axis=1)
     df['length'] = df['sequence'].apply(lambda x: len(x))
     df['N_counts'] = df['sequence'].apply(lambda x: x.count('N'))
-    df.to_csv(filename.split('.')[0] + '.csv')
-    return df
+    csv_filename = filename.split('.')[0] + '.csv'  # Set the CSV file name
+    df.to_csv(csv_filename, index=False)  # Save the CSV file
+    return csv_filename  # Return the CSV file name
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
@@ -40,13 +42,14 @@ def upload_file():
             return "Invalid file extension"
 
         file.save(file.filename)
-        df = fasta2csv(file.filename)
+        csv_filename = fasta2csv(file.filename)
         
         # Generate a response to download the processed CSV file
-        csv_filename = file.filename.split('.')[0] + '.csv'
-        response = send_file(csv_filename, as_attachment=True)
-
-        return response
+        return send_file(
+            csv_filename,
+            as_attachment=True,
+            download_name="output.csv"  # Set the default download name
+        )
 
     return render_template('upload.html')
 
